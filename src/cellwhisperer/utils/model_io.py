@@ -40,7 +40,8 @@ def load_cellwhisperer_model(
     if model_path is not None:
         model_path = Path(model_path).expanduser()
         pl_model = TranscriptomeTextDualEncoderLightning.load_from_checkpoint(
-            model_path
+            model_path,
+            weights_only=False
         )
     else:
         pl_model = TranscriptomeTextDualEncoderLightning(
