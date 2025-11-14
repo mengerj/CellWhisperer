@@ -18,16 +18,18 @@ from transformers.processing_utils import ProcessorMixin
 
 
 from cellwhisperer.config import get_path
-
-from UCE.model import TransformerModel
-from UCE.eval_data import MultiDatasetSentences, MultiDatasetSentenceCollator
-from UCE.data_proc.data_utils import (
-    get_species_to_pe,
-    anndata_to_sc_dataset,
-    data_to_torch_X,
-    get_spec_chrom_csv,
-    adata_path_to_prot_chrom_starts,
-)
+try:
+    from UCE.model import TransformerModel
+    from UCE.eval_data import MultiDatasetSentences, MultiDatasetSentenceCollator
+    from UCE.data_proc.data_utils import (
+        get_species_to_pe,
+        anndata_to_sc_dataset,
+        data_to_torch_X,
+        get_spec_chrom_csv,
+        adata_path_to_prot_chrom_starts,
+    )
+except ModuleNotFoundError:
+    logging.warning("UCE not installed (only required if you want to use it).")
 
 TOKEN_DIM = 5120
 PE_DIM = 1280  # ESM2 embedding dimension
